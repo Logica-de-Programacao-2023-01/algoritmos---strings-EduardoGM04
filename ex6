@@ -1,0 +1,18 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+
+	var input string
+	fmt.Print("Informe uma string: ")
+	fmt.Scanln(&input)
+
+	palavras := strings.Fields(input)
+	quantidade := len(palavras)
+
+	fmt.Println("A string contém", quantidade, "palavra(s).")
+}
