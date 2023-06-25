@@ -1,0 +1,51 @@
+package main
+
+import (
+	"fmt"
+	"sort"
+	"strings"
+)
+
+func main() {
+
+	var str1, str2 string
+	fmt.Print("Informe a primeira string: ")
+	fmt.Scanln(&str1)
+	fmt.Print("Informe a segunda string: ")
+	fmt.Scanln(&str2)
+
+	str1 = removeEspacosToLower(str1)
+	str2 = removeEspacosToLower(str2)
+
+	if saoAnagramas(str1, str2) {
+		fmt.Println("As strings são anagramas.")
+	} else {
+		fmt.Println("As strings não são anagramas.")
+	}
+}
+
+func removeEspacosToLower(str string) string {
+	str = strings.ReplaceAll(str, " ", "")
+	str = strings.ToLower(str)
+	return str
+}
+
+func saoAnagramas(str1, str2 string) bool {
+	// Verifica se possuem o mesmo número de caracteres
+	if len(str1) != len(str2) {
+		return false
+	}
+
+	slice1 := []rune(str1)
+	slice2 := []rune(str2)
+	sort.Slice(slice1, func(i, j int) bool { return slice1[i] < slice1[j] })
+	sort.Slice(slice2, func(i, j int) bool { return slice2[i] < slice2[j] })
+
+	for i := 0; i < len(slice1); i++ {
+		if slice1[i] != slice2[i] {
+			return false
+		}
+	}
+
+	return true
+}
