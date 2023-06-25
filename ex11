@@ -1,0 +1,30 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+
+	var input string
+	fmt.Print("Informe uma string: ")
+	fmt.Scanln(&input)
+
+	resultado := removerVogais(input)
+
+	fmt.Println("String após a remoção das vogais:", resultado)
+}
+
+func removerVogais(input string) string {
+	vogais := "aeiouAEIOU"
+	resultado := strings.Builder{}
+
+	for _, char := range input {
+		if !strings.ContainsRune(vogais, char) {
+			resultado.WriteRune(char)
+		}
+	}
+
+	return resultado.String()
+}
