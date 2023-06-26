@@ -1,0 +1,30 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+
+	var input string
+	fmt.Print("Informe uma string: ")
+	fmt.Scanln(&input)
+
+	input = strings.ToLower(strings.ReplaceAll(input, " ", ""))
+
+	if isPalindromo(input) {
+		fmt.Println("A string é um palíndromo.")
+	} else {
+		fmt.Println("A string não é um palíndromo.")
+	}
+}
+
+func isPalindromo(input string) bool {
+	for i := 0; i < len(input)/2; i++ {
+		if input[i] != input[len(input)-1-i] {
+			return false
+		}
+	}
+	return true
+}
