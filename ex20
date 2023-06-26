@@ -1,0 +1,37 @@
+package main
+
+import (
+	"fmt"
+	"unicode"
+)
+
+func main() {
+	var input string
+
+	fmt.Print("Digite uma string: ")
+	fmt.Scanln(&input)
+
+	isCamelCase, wordCount := analyzeCamelCase(input)
+
+	if isCamelCase {
+		fmt.Println("A string está em camelCase.")
+		fmt.Println("Número de palavras:", wordCount)
+	} else {
+		fmt.Println("A string não está em camelCase.")
+	}
+}
+
+func analyzeCamelCase(str string) (bool, int) {
+	wordCount := 1
+	isCamelCase := true
+
+	for i, char := range str {
+		if i == 0 && unicode.IsLower(char) {
+			isCamelCase = false
+		} else if i != 0 && unicode.IsUpper(char) {
+			wordCount++
+		}
+	}
+
+	return isCamelCase, wordCount
+}
