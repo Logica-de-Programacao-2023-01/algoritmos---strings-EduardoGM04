@@ -1,0 +1,39 @@
+package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	
+	var input string
+	fmt.Print("Informe uma string: ")
+	fmt.Scanln(&input)
+
+	if isSequenciaDecrescente(input) {
+		fmt.Println("A string é uma sequência numérica decrescente.")
+	} else {
+		fmt.Println("A string não é uma sequência numérica decrescente.")
+	}
+}
+
+func isSequenciaDecrescente(input string) bool {
+	// Convertendo a string para um slice de inteiros
+	numeros := make([]int, len(input))
+	for i, char := range input {
+		num, err := strconv.Atoi(string(char))
+		if err != nil {
+			return false
+		}
+		numeros[i] = num
+	}
+
+	for i := 0; i < len(numeros)-1; i++ {
+		if numeros[i+1] != numeros[i]-1 {
+			return false
+		}
+	}
+
+	return true
+}
